@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Reset Mentale in 24 Ore</title>
+
 <style>
 body {
     margin: 0;
@@ -18,7 +19,7 @@ body {
 }
 
 .container {
-    max-width: 700px;
+    max-width: 720px;
     padding: 40px 20px;
 }
 
@@ -52,13 +53,19 @@ h2 {
 }
 
 .countdown {
-    font-size: 28px;
-    font-weight: 600;
-    margin: 20px 0;
-    letter-spacing: 2px;
+    font-size: 32px;
+    font-weight: 700;
+    margin-top: 20px;
+}
+
+.countdown-text {
+    font-size: 14px;
+    color: #94a3b8;
+    margin-top: 8px;
 }
 
 button {
+    margin-top: 25px;
     background: #22c55e;
     border: none;
     padding: 16px 32px;
@@ -72,8 +79,20 @@ button {
 button:hover {
     background: #16a34a;
 }
+
+button:disabled {
+    background: #475569;
+    cursor: not-allowed;
+}
+
+.expired {
+    color: #ef4444;
+    font-weight: 600;
+    margin-top: 10px;
+}
 </style>
 </head>
+
 <body>
 
 <div class="container">
@@ -81,40 +100,58 @@ button:hover {
     <h2>Elimina la nebbia mentale e ritrova lucidità oggi stesso.</h2>
 
     <div class="video-wrapper">
-        <!-- Sostituisci il link con la tua VSL -->
+        <!-- Sostituisci VIDEO_ID -->
         <iframe src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allowfullscreen></iframe>
     </div>
 
     <div class="countdown" id="timer">10:00</div>
+    <div class="countdown-text">
+        L'offerta è valida solo fino al termine del countdown.
+    </div>
 
-    <button onclick="window.location.href='#'">
+    <button id="ctaButton" onclick="window.location.href='https://tuolinkcheckout.com'">
         VOGLIO PIÙ CHIAREZZA ORA
     </button>
+
+    <div id="expiredMessage" class="expired"></div>
 </div>
 
 <script>
-let duration = 600; // 10 minuti in secondi
-let timerDisplay = document.getElementById("timer");
+const duration = 10 * 60 * 1000; // 10 minuti in millisecondi
+const timerDisplay = document.getElementById("timer");
+const expiredMessage = document.getElementById("expiredMessage");
+const ctaButton = document.getElementById("ctaButton");
 
-function startTimer() {
-    let timer = duration;
-    let countdown = setInterval(function () {
-        let minutes = Math.floor(timer / 60);
-        let seconds = timer % 60;
+// Salva il tempo di scadenza
+let endTime = localStorage.getItem("offerEndTime");
 
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-
-        timerDisplay.textContent = minutes + ":" + seconds;
-
-        if (--timer < 0) {
-            clearInterval(countdown);
-            timerDisplay.textContent = "00:00";
-        }
-    }, 1000);
+if (!endTime) {
+    endTime = new Date().getTime() + duration;
+    localStorage.setItem("offerEndTime", endTime);
 }
 
-startTimer();
+function updateTimer() {
+    const now = new Date().getTime();
+    const distance = endTime - now;
+
+    if (distance <= 0) {
+        timerDisplay.textContent = "00:00";
+        expiredMessage.textContent = "Offerta scaduta";
+        ctaButton.disabled = true;
+        clearInterval(interval);
+        return;
+    }
+
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    timerDisplay.textContent =
+        (minutes < 10 ? "0" + minutes : minutes) + ":" +
+        (seconds < 10 ? "0" + seconds : seconds);
+}
+
+const interval = setInterval(updateTimer, 1000);
+updateTimer();
 </script>
 
 </body>
