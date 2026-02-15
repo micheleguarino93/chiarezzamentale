@@ -1,67 +1,121 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reset Mentale in 24 Ore</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reset Mentale in 24 Ore</title>
+<style>
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: #0f172a;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+.container {
+    max-width: 700px;
+    padding: 40px 20px;
+}
+
+h1 {
+    font-size: 42px;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 18px;
+    font-weight: 400;
+    color: #cbd5e1;
+    margin-bottom: 30px;
+}
+
+.video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    margin-bottom: 30px;
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    border-radius: 12px;
+}
+
+.countdown {
+    font-size: 28px;
+    font-weight: 600;
+    margin: 20px 0;
+    letter-spacing: 2px;
+}
+
+button {
+    background: #22c55e;
+    border: none;
+    padding: 16px 32px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #16a34a;
+}
+</style>
 </head>
 <body>
 
-    <section class="hero">
-        <div class="container">
-            <h1>RESET MENTALE IN 24 ORE</h1>
-            <p class="subtitle">Elimina la nebbia mentale e ritrova lucidità oggi stesso.</p>
-            
-            <div class="countdown-box">
-                <p>Offerta valida per:</p>
-                <div id="countdown">10:00</div>
-            </div>
+<div class="container">
+    <h1>RESET MENTALE IN 24 ORE</h1>
+    <h2>Elimina la nebbia mentale e ritrova lucidità oggi stesso.</h2>
 
-            <a href="#checkout" class="cta-button">VOGLIO PIÙ CHIAREZZA ORA</a>
-        </div>
-    </section>
+    <div class="video-wrapper">
+        <!-- Sostituisci il link con la tua VSL -->
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allowfullscreen></iframe>
+    </div>
 
-    <section class="vsl">
-        <div class="container">
-            <h2>Guarda il Video</h2>
-            <div class="video-wrapper">
-                <!-- Sostituisci con link VSL -->
-                <iframe src="https://www.youtube.com/embed/VIDEO_ID" 
-                        frameborder="0" allowfullscreen></iframe>
-            </div>
-        </div>
-    </section>
+    <div class="countdown" id="timer">10:00</div>
 
-    <section class="benefits">
-        <div class="container">
-            <h2>Cosa Ottieni</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3>Meno Rumore Mentale</h3>
-                    <p>Riduci la sovrastimolazione e libera energia cognitiva.</p>
-                </div>
-                <div class="card">
-                    <h3>Più Focus</h3>
-                    <p>Ripristina concentrazione e controllo.</p>
-                </div>
-                <div class="card">
-                    <h3>Risultati Oggi</h3>
-                    <p>Protocollo applicabile in meno di 24 ore.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    <button onclick="window.location.href='#'">
+        VOGLIO PIÙ CHIAREZZA ORA
+    </button>
+</div>
 
-    <section class="offer" id="checkout">
-        <div class="container">
-            <h2>Offerta Lancio</h2>
-            <p class="price">Solo 9€</p>
-            <a href="#" class="cta-button big">ACQUISTA ORA</a>
-            <p class="guarantee">Garanzia 100% soddisfatto o rimborsato</p>
-        </div>
-    </section>
+<script>
+let duration = 600; // 10 minuti in secondi
+let timerDisplay = document.getElementById("timer");
 
-<script src="script.js"></script>
+function startTimer() {
+    let timer = duration;
+    let countdown = setInterval(function () {
+        let minutes = Math.floor(timer / 60);
+        let seconds = timer % 60;
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        timerDisplay.textContent = minutes + ":" + seconds;
+
+        if (--timer < 0) {
+            clearInterval(countdown);
+            timerDisplay.textContent = "00:00";
+        }
+    }, 1000);
+}
+
+startTimer();
+</script>
+
 </body>
 </html>
