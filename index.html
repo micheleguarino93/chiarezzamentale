@@ -1,90 +1,67 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Reset Mentale in 24 Ore</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Mentale in 24 Ore</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<section class="hero">
-<div class="container hero-content">
+    <section class="hero">
+        <div class="container">
+            <h1>RESET MENTALE IN 24 ORE</h1>
+            <p class="subtitle">Elimina la nebbia mentale e ritrova lucidità oggi stesso.</p>
+            
+            <div class="countdown-box">
+                <p>Offerta valida per:</p>
+                <div id="countdown">10:00</div>
+            </div>
 
-<div class="hero-text">
-<h1>🧠 RESET MENTALE IN 24 ORE</h1>
-<p class="subtitle">Elimina la nebbia mentale e ritrova lucidità oggi stesso.</p>
+            <a href="#checkout" class="cta-button">VOGLIO PIÙ CHIAREZZA ORA</a>
+        </div>
+    </section>
 
-<div class="countdown-box">
-<p>Offerta valida per:</p>
-<div id="countdown">10:00</div>
-</div>
+    <section class="vsl">
+        <div class="container">
+            <h2>Guarda il Video</h2>
+            <div class="video-wrapper">
+                <!-- Sostituisci con link VSL -->
+                <iframe src="https://www.youtube.com/embed/VIDEO_ID" 
+                        frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
 
-<a href="#" class="cta-button">VOGLIO PIÙ CHIAREZZA ORA</a>
-</div>
+    <section class="benefits">
+        <div class="container">
+            <h2>Cosa Ottieni</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Meno Rumore Mentale</h3>
+                    <p>Riduci la sovrastimolazione e libera energia cognitiva.</p>
+                </div>
+                <div class="card">
+                    <h3>Più Focus</h3>
+                    <p>Ripristina concentrazione e controllo.</p>
+                </div>
+                <div class="card">
+                    <h3>Risultati Oggi</h3>
+                    <p>Protocollo applicabile in meno di 24 ore.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<div class="hero-image">
-<img src="cover.png" alt="Copertina Ebook Reset Mentale">
-</div>
+    <section class="offer" id="checkout">
+        <div class="container">
+            <h2>Offerta Lancio</h2>
+            <p class="price">Solo 9€</p>
+            <a href="#" class="cta-button big">ACQUISTA ORA</a>
+            <p class="guarantee">Garanzia 100% soddisfatto o rimborsato</p>
+        </div>
+    </section>
 
-</div>
-</section>
-
-<section><div class="container">
-<h2>🔒 Garanzia</h2>
-<p>Se entro 24 ore non senti un miglioramento reale, ricevi rimborso completo.</p>
-</div></section>
-
-<section><div class="container" style="text-align:center;">
-<h2>👇 Inizia il tuo reset ora</h2>
-<a href="#" class="cta-button">VOGLIO PIÙ CHIAREZZA ORA</a>
-</div></section>
-
-<script>
-const countdownElement = document.getElementById("countdown");
-const ctaButtons = document.querySelectorAll(".cta-button");
-
-const duration = 10 * 60 * 1000;
-let endTime = localStorage.getItem("resetCountdownEndTime");
-
-if (!endTime) {
-    endTime = new Date().getTime() + duration;
-    localStorage.setItem("resetCountdownEndTime", endTime);
-}
-
-function expireOffer() {
-    countdownElement.innerHTML = "OFFERTA SCADUTA";
-    ctaButtons.forEach(button => {
-        button.classList.add("disabled");
-        button.innerText = "OFFERTA SCADUTA";
-        button.style.pointerEvents = "none";
-    });
-}
-
-const timer = setInterval(() => {
-    const now = new Date().getTime();
-    const distance = endTime - now;
-
-    if (distance <= 0) {
-        clearInterval(timer);
-        localStorage.removeItem("resetCountdownEndTime");
-        expireOffer();
-        return;
-    }
-
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    countdownElement.innerHTML =
-        (minutes < 10 ? "0" : "") + minutes + ":" +
-        (seconds < 10 ? "0" : "") + seconds;
-
-}, 1000);
-
-if (new Date().getTime() >= endTime) {
-    expireOffer();
-}
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
