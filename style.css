@@ -1,0 +1,95 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #0d1b2a;
+    color: white;
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    max-width: 900px;
+    margin: auto;
+    text-align: center;
+}
+
+.hero {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #0d1b2a, #1b263b);
+}
+
+.hero h1 {
+    font-size: 42px;
+    margin-bottom: 20px;
+}
+
+.subtitle {
+    font-size: 20px;
+    margin-bottom: 30px;
+    color: #ccc;
+}
+
+.countdown-box {
+    margin: 20px 0;
+}
+
+#countdown {
+    font-size: 48px;
+    font-weight: bold;
+    color: #ffd60a;
+    margin-top: 10px;
+}
+
+.cta-button {
+    display: inline-block;
+    background-color: #00b4d8;
+    color: white;
+    padding: 15px 30px;
+    margin-top: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.cta-button:hover {
+    background-color: #0096c7;
+}
+
+.cta-button.large {
+    padding: 18px 40px;
+    font-size: 18px;
+}
+
+.problem, .solution, .guarantee {
+    padding: 60px 0;
+}
+
+.problem ul {
+    list-style: none;
+    margin-top: 20px;
+}
+
+.problem li {
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+.solution {
+    background-color: #1b263b;
+}
+
+.guarantee {
+    background-color: #14213d;
+}
+
+.cta-button.disabled {
+    background-color: #555;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
